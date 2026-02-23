@@ -122,4 +122,51 @@ a:hover {
 img.socialIcon {
   height: 30px;
   width: 30px;
+  transition: transform 240ms cubic-bezier(.2,.9,.3,1), filter 180ms ease;
+  will-change: transform, filter;
+  transform-origin: center;
+  backface-visibility: hidden;
+  /* gentle floating motion so icons feel alive */
+  animation: socialFloat 6s ease-in-out infinite;
+}
+
+/* stagger the float so icons don't move in perfect sync */
+#footer > div > a:nth-child(1) img.socialIcon { animation-delay: 0s; }
+#footer > div > a:nth-child(2) img.socialIcon { animation-delay: 0.12s; }
+#footer > div > a:nth-child(3) img.socialIcon { animation-delay: 0.24s; }
+#footer > div > a:nth-child(4) img.socialIcon { animation-delay: 0.36s; }
+#footer > div > a:nth-child(5) img.socialIcon { animation-delay: 0.48s; }
+#footer > div > a:nth-child(6) img.socialIcon { animation-delay: 0.60s; }
+#footer > div > a:nth-child(7) img.socialIcon { animation-delay: 0.72s; }
+#footer > div > a:nth-child(8) img.socialIcon { animation-delay: 0.84s; }
+
+/* pop + rotate on hover for a delightful interaction */
+img.socialIcon:hover,
+img.socialIcon:focus {
+  animation: bounce 0.5s;
+  animation-iteration-count: infinite;
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,0.28));
+  transform: translateZ(0);
+  cursor: pointer;
+}
+
+@keyframes socialFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-4px) rotate(-2deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(3px) rotate(2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes socialPop {
+  0% { transform: scale(1) rotate(0deg); }
+  40% { transform: scale(1.28) rotate(12deg); }
+  70% { transform: scale(0.98) rotate(-6deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
